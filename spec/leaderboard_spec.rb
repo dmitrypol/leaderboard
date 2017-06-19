@@ -861,4 +861,12 @@ describe 'Leaderboard' do
 
     expect(@leaderboard.total_scores()).to eq(325)
   end
+
+  it 'should return the percentage of all scores in the leaderboard' do
+    rank_members_in_leaderboard(5)
+
+    expect(@leaderboard.scores_percent('member_1')).to eq(6.666666666666667)
+    expect(@leaderboard.scores_percent('member_2')).to eq(13.333333333333334)
+  end
+
 end

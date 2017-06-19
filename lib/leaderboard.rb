@@ -383,6 +383,25 @@ class Leaderboard
     all_leaders_from(leaderboard_name).map{|hash| hash[:score] }.inject(0, :+)
   end
 
+  # Percent of total_scores in leaderboard for this member, slice of the pie
+  # @param member [String] Member name.
+  #
+  # @return Percentage of total of scores
+  def scores_percent(member)
+    scores_percent_in(@leaderboard_name, member)
+  end
+
+  # Percent of total_scores in named leaderboard for this member, slice of the pie
+  # @param member [String] Member name.
+  # @param leaderboard_name Name of the leaderboard.
+  #
+  # @return Percentage of total of scores
+  def scores_percent_in(leaderboard_name, member)
+    member_score = score_for_in(leaderboard_name, member)
+    total_scores = total_scores_in(leaderboard_name)
+    (member_score / total_scores) * 100
+  end
+
   # Change the score for a member in the leaderboard by a score delta which can be positive or negative.
   #
   # @param member [String] Member name.
