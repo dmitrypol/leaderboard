@@ -851,5 +851,14 @@ describe 'Leaderboard' do
     expect(leaders[0][:member]).to eql('member_1')
     expect(leaders[1][:member]).to eql('member_15')
     expect(leaders[2][:member]).to eql('member_25')
+
+    leaders = @leaderboard.ranked_in_list(['member_200'], :include_missing => false, :with_member_data => true)
+    expect(leaders.size).to be(0)
+  end
+
+  it 'should return the sum of all scores in the leaderboard' do
+    rank_members_in_leaderboard(25)
+
+    expect(@leaderboard.total_scores()).to eq(325)
   end
 end

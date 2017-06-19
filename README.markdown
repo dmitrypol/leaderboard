@@ -350,7 +350,7 @@ Competition ranking: The `CompetitionRankingLeaderboard` subclass of `Leaderboar
   total_members: Total # of members in the leaderboard
   total_pages: Total # of pages in the leaderboard given the leaderboard's page_size
   total_members_in_score_range(min_score, max_score): Count the number of members within a score range in the leaderboard
-  total_scores: Sum of scores for all members in leaderboard  
+  total_scores: Sum of scores for all members in leaderboard
   change_score_for(member, delta): Change the score for a member by some amount delta (delta could be positive or negative)
   rank_for(member): Retrieve the rank for a given member in the leaderboard
   score_for(member): Retrieve the score for a given member in the leaderboard
@@ -487,4 +487,4 @@ Unofficially supported (they need some feature parity love):
 
 ## Copyright
 
-Copyright (c) 2011-2016 David Czarnecki. See LICENSE.txt for further details.
+Copyright (c) 2011-2017 David Czarnecki. See LICENSE.txt for further details.

@@ -371,9 +371,16 @@ class Leaderboard
 
   # Sum of scores for all members in leaderboard
   #
-  # @return boolean
+  # @return Sum of scores for all members in leaderboard
   def total_scores
-    all_leaders.map{|hash| hash[:score] }.sum
+    total_scores_in(@leaderboard_name)
+  end
+
+  # Sum of scores for all members in the named leaderboard
+  #
+  # @return Sum of scores for all members in named leaderboard
+  def total_scores_in(leaderboard_name)
+    all_leaders_from(leaderboard_name).map{|hash| hash[:score] }.inject(0, :+)
   end
 
   # Change the score for a member in the leaderboard by a score delta which can be positive or negative.
@@ -995,7 +1002,8 @@ class Leaderboard
     end
 
     if leaderboard_options[:with_member_data]
-      members_data_for_in(leaderboard_name, members).each_with_index do |member_data, index|
+      included_members = ranks_for_members.collect { |member| member[@member_key] }
+      members_data_for_in(leaderboard_name, included_members).each_with_index do |member_data, index|
         ranks_for_members[index][@member_data_key] = member_data
       end
     end
